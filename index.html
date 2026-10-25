@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050505">
 <title>filovskiy.net — независимая группа</title>
 <meta name="description" content="filovskiy.net — независимое объединение исследователей систем. Тихо, методично, по делу.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='rgba(255,255,255,0.08)' stroke='rgba(255,255,255,0.5)' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='10' fill='%23ffffff'/%3E%3C/svg%3E">
@@ -27,6 +28,7 @@
     color:var(--text);
     font-family:var(--sans);
     -webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:transparent;
     overflow-x:hidden;
     min-height:100vh;
   }
@@ -167,20 +169,6 @@
     animation:sink 2.2s ease-in-out infinite}
   @keyframes sink{0%,100%{transform:scaleY(.4);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
 
-  /* ---------- манифест ---------- */
-  .statement{
-    font-size:clamp(28px,4.6vw,54px);font-weight:500;letter-spacing:-.02em;
-    line-height:1.18;max-width:19ch;
-  }
-  .statement .fade{color:var(--dim)}
-  .manifest-text{
-    margin-top:56px;display:flex;gap:40px;flex-wrap:wrap;
-  }
-  .manifest-text p{
-    flex:1;min-width:260px;max-width:380px;font-weight:300;line-height:1.75;
-    color:var(--muted);font-size:15.5px;
-  }
-
   /* ---------- деятельность: строки, не карточки ---------- */
   .rows{border-top:1px solid var(--hair)}
   .row{
@@ -196,6 +184,7 @@
   .row-num{font-family:var(--mono);font-size:13px;color:var(--dim)}
   .row-name{font-size:21px;font-weight:500;letter-spacing:-.01em}
   .row-desc{font-weight:300;font-size:15.5px;line-height:1.65;color:var(--muted);max-width:520px}
+  .row-desc b{font-family:var(--mono);font-weight:500;font-size:.9em;color:var(--text)}
   @media(max-width:760px){
     .row{grid-template-columns:60px 1fr;grid-template-rows:auto auto}
     .row-desc{grid-column:2}
@@ -206,6 +195,7 @@
   .join-text{flex:1;min-width:280px}
   .join-text h2{font-size:clamp(26px,3.6vw,40px);font-weight:500;letter-spacing:-.02em;line-height:1.2}
   .join-text p{margin-top:22px;font-weight:300;color:var(--muted);line-height:1.7;max-width:46ch}
+  .join-text .btn{margin-top:34px}
   .term{
     flex:0 1 auto;min-width:300px;padding:26px 30px;border-radius:20px;
     font-family:var(--mono);font-size:13px;line-height:2;color:var(--muted);
@@ -229,6 +219,44 @@
   .foot-meta a{color:var(--muted);text-decoration:none;transition:color .25s}
   .foot-meta a:hover{color:#fff}
 
+  /* ---------- мобильная версия ---------- */
+  @media(max-width:640px){
+    main{padding:0 20px}
+    section{padding:76px 0}
+    .nav{top:12px;gap:12px;padding:9px 10px 9px 16px;width:calc(100vw - 24px)}
+    .nav-logo{font-size:12.5px}
+    .nav-links{gap:0}
+    .nav-links a{font-size:11.5px;padding:7px 9px}
+    .hero{padding:130px 0 80px;min-height:100svh}
+    .hero-tag{font-size:11.5px;margin-bottom:22px}
+    .hero-sub{margin-top:26px;font-size:16px}
+    .hero-cta{margin-top:36px;gap:10px}
+    .btn{padding:15px 26px;font-size:13px}
+    .scroll-hint{left:20px;bottom:26px}
+    .label{font-size:11px;margin-bottom:30px}
+    .row{grid-template-columns:44px 1fr;gap:8px 14px;padding:26px 12px;margin:0 -12px}
+    .row-num{font-size:11px}
+    .row-name{font-size:18px}
+    .row-desc{grid-column:2;font-size:14.5px}
+    .join-wrap{gap:34px}
+    .join-text .btn{margin-top:28px;display:block;width:fit-content}
+    .term{min-width:0;width:100%;font-size:12px;line-height:1.9;padding:20px 22px}
+    .foot{padding:22px 24px;border-radius:20px;gap:12px 20px}
+    .foot-brand{font-size:12px}
+    .foot-meta{margin-left:0;gap:10px 20px;font-size:10.5px}
+    /* лёгкие эффекты ради плавности на телефонах */
+    .orb{filter:blur(70px)}
+    .cursor-glow{display:none}
+    .glass{box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.28),
+      inset 0 -1px 0 rgba(0,0,0,.4),
+      0 14px 40px rgba(0,0,0,.5)}
+  }
+  @media(max-width:380px){
+    .nav-logo{display:none}
+    .nav{padding-left:14px}
+  }
+
   /* ---------- появление при скролле ---------- */
   .rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
   .rv.in{opacity:1;transform:none}
@@ -249,7 +277,6 @@
 <nav class="nav glass">
   <a class="nav-logo" href="#top"><b>filovskiy</b>.net</a>
   <div class="nav-links">
-    <a href="#manifest">манифест</a>
     <a href="#activity">деятельность</a>
     <a href="#join">связь</a>
   </div>
@@ -264,26 +291,15 @@
     <h1 class="rv">filovskiy.net</h1>
     <p class="hero-sub rv">Хакерская группа. Мы не ломаем системы — <em>мы изучаем их границы</em>. Тихо, методично, без витрин.</p>
     <div class="hero-cta rv">
-      <a class="btn btn-solid" href="#manifest">читать манифест</a>
+      <a class="btn btn-solid" href="#activity">смотреть деятельность</a>
       <a class="btn btn-ghost glass" href="#join">установить связь</a>
     </div>
     <div class="scroll-hint"><span class="line"></span>листай</div>
   </section>
 
-  <!-- манифест -->
-  <section id="manifest">
-    <div class="label rv">01 · манифест</div>
-    <p class="statement rv">Информация хочет быть <span class="fade">понятой.</span></p>
-    <div class="manifest-text">
-      <p class="rv">filovskiy.net — не бренд и не команда на вакансиях. Это точка, где сходятся люди, которым интересно, как устроены системы изнутри: протоколы, железо, привычки, люди.</p>
-      <p class="rv">Мы не верим в магию технологий. Мы верим в любопытство, метод и терпение. Каждая система — это язык. Взлом — всего лишь плохой перевод. Мы учимся читать.</p>
-      <p class="rv">Мы работаем тихо. Никакой шумихи, рейтингов и обещаний. То, что сделано хорошо, не нуждается в анонсах — результаты говорят сами.</p>
-    </div>
-  </section>
-
   <!-- деятельность -->
   <section id="activity">
-    <div class="label rv">02 · деятельность</div>
+    <div class="label rv">01 · деятельность</div>
     <div class="rows">
       <div class="row rv">
         <span class="row-num">/01</span>
@@ -293,7 +309,7 @@
       <div class="row rv">
         <span class="row-num">/02</span>
         <span class="row-name">инструментарий</span>
-        <span class="row-desc">Собственные утилиты, скрипты и прототипы. Всё, что ускоряет мысль, мы пишем сами — и не просим разрешения.</span>
+        <span class="row-desc">Проверенный арсенал вместо игрушек: Nmap и masscan — разведка сетей, Wireshark — трафик, Burp Suite и sqlmap — веб, Metasploit — эксплойты. Для OSINT — Shodan, theHarvester, Maltego и Recon-ng. Для реверса — Ghidra. Плюс собственные скрипты под конкретную задачу.</span>
       </div>
       <div class="row rv">
         <span class="row-num">/03</span>
@@ -303,24 +319,27 @@
       <div class="row rv">
         <span class="row-num">/04</span>
         <span class="row-name">закрытые проекты</span>
-        <span class="row-desc">То, о чём мы не рассказываем. Внешне это выглядит как тишина. Внутри — как работа.</span>
+        <span class="row-desc">То, о чём мы пока не рассказываем. Сейчас в работе — <b>webprotect</b> и <b>gofile</b>. Имена ничего вам не скажут — и не должны. Внешне это выглядит как тишина. Внутри — как работа.</span>
       </div>
     </div>
   </section>
 
   <!-- связь -->
   <section id="join">
-    <div class="label rv">03 · связь</div>
+    <div class="label rv">02 · связь</div>
     <div class="join-wrap">
       <div class="join-text rv">
         <h2>Мы не публикуем форм заявлений.</h2>
-        <p>Никаких наборов и собеседований. Если ты делаешь что-то интересное и понимаешь, зачем это нужно, — ты нас найдёшь. Или наоборот. Сигнал читается по делу, а не по словам.</p>
+        <p>Никаких наборов и собеседований. Если ты делаешь что-то интересное и понимаешь, зачем это нужно, — ты нас найдёшь. Или наоборот. Сигнал читается по делу, а не по словам. Единственный канал, который мы точно читаем:</p>
+        <a class="btn btn-solid tg-btn" href="https://t.me/filovskiynet" target="_blank" rel="noopener">telegram — @filovskiynet</a>
       </div>
       <div class="term glass rv">
         <div><span class="p">$</span> whoami</div>
         <div class="out">гость</div>
         <div><span class="p">$</span> echo "привет" | nc filovskiy.net 1337</div>
         <div class="out">соединение установлено<span class="p">_</span></div>
+        <div><span class="p">$</span> curl -s filovskiy.net/tg</div>
+        <div class="out">@filovskiynet</div>
       </div>
     </div>
   </section>
@@ -333,6 +352,7 @@
     <div class="foot-meta">
       <span>© 2026</span>
       <span>статус: активны</span>
+      <a href="https://t.me/filovskiynet" target="_blank" rel="noopener">tg: @filovskiynet</a>
       <span>pgp: 4F1L 0VSK IY9N ET00</span>
       <a href="https://github.com/filovskiy" target="_blank" rel="noopener">github</a>
     </div>
